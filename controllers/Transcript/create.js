@@ -18,8 +18,8 @@ class createTranscript {
 
     const options = {
       filter: "audioonly", // Filter for audio streams only
-      quality: "highestaudio", // Choose the highest quality available
-      format: "mp3", // Specify the audio format (e.g., mp3, m4a, webm)
+      quality: "highestaudio", 
+      format: "mp3", // (e.g., mp3, m4a, webm)
     };
 
     const audioStream = ytdl(url, options);
@@ -31,8 +31,8 @@ class createTranscript {
     writeStream.on("finish", async function () {
       const transcription = await openai.audio.transcriptions.create({
         file: fs.createReadStream(audioFilePath),
-        model: "whisper-1", // Adjust the model as needed
-        use_case: "dictation", // Adjust the use case as needed
+        model: "whisper-1", 
+        use_case: "dictation",
       });
 
       fs.unlinkSync(audioFilePath);
